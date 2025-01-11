@@ -1,0 +1,985 @@
+/* Estilos generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+}
+
+.site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #fff;
+    border-bottom: 5px solid #f9b233;
+}
+
+.logo a {
+    color: #111;
+    font-size: 24px;
+    text-decoration: none;
+}
+
+.nav-menu {
+    position: relative;
+}
+
+.nav-menu ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.nav-menu li {
+    margin: 0 20px;
+}
+
+.nav-menu a {
+    color: #111;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.nav-menu a:hover {
+    color: #f9b233;
+}
+
+/* Estilos de menú responsive */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.hamburger div {
+    width: 30px;
+    height: 3px;
+    background-color: #111;
+    margin: 4px 0;
+}
+
+/* Sección de la imagen principal (hero) */
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 80vh; /* Altura ajustable */
+    overflow: hidden;
+}
+
+.hero-section img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.5); /* Ajusta el brillo de la imagen */
+}
+
+.hero-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+}
+
+.hero-text h1 {
+    font-size: 48px;
+    font-weight: bold;
+}
+
+.hero-text p {
+    font-size: 24px;
+}
+
+/* Footer Styles */
+.site-footer {
+    background-color: white;
+    color: black;
+    padding: 40px 20px;
+    text-align: center;
+    border-top: 5px solid #f9b233;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer-content p {
+    margin: 0;
+    font-size: 14px;
+}
+
+.footer-menu ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+.footer-menu li {
+    display: inline;
+    margin: 0 15px;
+}
+
+.footer-menu a {
+    color: black;
+    text-decoration: none;
+}
+
+.footer-menu a:hover {
+    text-decoration: underline;
+}
+
+/* Estilos de las tarjetas */
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+}
+
+.card {
+    background-color: white;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    margin: 15px;
+    padding: 20px;
+    text-align: center;
+    transition: border 0.3s, box-shadow 0.3s;
+    width: 300px; /* Ajusta el ancho según sea necesario */
+}
+
+.card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+/* Animación de borde al pasar el mouse */
+.card:hover {
+    border: 2px solid #f9b233; /* Color del borde al pasar el mouse */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transform: scale(1.05); /* Aumenta ligeramente el tamaño */
+}
+
+/* Estilo de texto dentro de la tarjeta */
+.card h2, .card h4 {
+    color: #111;
+}
+
+.title-container {
+    text-align: center; /* Centra el texto */
+    margin: 30px 0; /* Espacio superior e inferior */
+    position: relative; /* Para agregar decoraciones */
+}
+
+.title-container h2 {
+    display: inline-block;
+    padding: 15px 30px; /* Espaciado más grande para hacerlo llamativo */
+    font-size: 28px; /* Tamaño de fuente mayor */
+    font-weight: bold;
+    color: #f9b233; /* Color del texto similar al de los beneficios */
+    background: linear-gradient(135deg, #fff, #f1f1f1); /* Degradado elegante */
+    border-radius: 12px; /* Bordes redondeados */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    letter-spacing: 1px; /* Espaciado entre letras */
+    position: relative; /* Para añadir un pseudo-elemento decorativo */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transiciones para suavidad */
+}
+
+/* Animación al pasar el ratón */
+.title-container h2:hover {
+    transform: translateY(-5px); /* Eleva el título ligeramente */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Sombra más profunda */
+}
+
+.title-container h2:before {
+    content: "";
+    position: absolute;
+    width: 100px; /* Anchura de la línea decorativa */
+    height: 4px; /* Altura de la línea decorativa */
+    background-color: #f9b233; /* Color del borde decorativo */
+    top: 100%; /* Posición debajo del título */
+    left: 50%;
+    transform: translateX(-50%); /* Centrar la línea */
+    margin-top: 10px; /* Espacio respecto al título */
+    opacity: 0; /* Oculto por defecto */
+    transition: opacity 0.3s ease; /* Transición de opacidad */
+}
+
+.title-container h2:after {
+    content: "";
+    position: absolute;
+    width: 100px;
+    height: 4px;
+    background-color: #f9b233;
+    bottom: 100%; /* Posiciona arriba del título */
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 10px;
+    opacity: 0; /* Oculto por defecto */
+    transition: opacity 0.3s ease;
+}
+
+.title-container h2:hover:before, 
+.title-container h2:hover:after {
+    opacity: 1; /* Aparece la línea decorativa al hacer hover */
+}
+
+/* Sección de beneficios */
+.benefits-section {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    padding: 40px;
+    background-color: #f5f5dc; /* Fondo gris claro */
+}
+
+.benefit {
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.benefit h3 {
+    font-size: 22px;
+    color: #f9b233;
+    margin-bottom: 10px;
+}
+
+.benefit p {
+    font-size: 16px;
+    color: #333;
+}
+
+.benefit:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 5px solid transparent;
+    border-radius: 12px;
+    transition: border-color 0.4s ease;
+}
+
+.benefit:hover:before {
+    border-color: #f9b233; /* Bordes animados al hover */
+}
+
+.benefit:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); /* Sombra aumentada */
+}
+
+/* Establecer z-index para asegurarse de que el menú esté por encima de otros elementos */
+.nav-menu {
+    position: relative;
+    z-index: 10; /* Asegúrate de que el menú principal esté por encima de otros elementos */
+}
+
+.nav-menu ul .submenu {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    list-style: none;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    top: 100%;
+    left: -120px;
+    z-index: 20; /* Asegúrate de que el submenú esté por encima de los demás elementos */
+}
+
+/* Asegurarse de que el padre sea relativo */
+.perfil-menu {
+    position: relative;
+    z-index: 10;
+}
+
+/* Mostrar el submenú al pasar el ratón sobre "Perfil" */
+.nav-menu li:hover .submenu {
+    display: block;
+}
+.submenu {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    list-style: none;
+    padding: 15px; /* Aumentar el padding para hacerlo más grande */
+    border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    top: 100%;
+    left: -70px;
+    z-index: 20; /* Asegúrate de que el submenú esté por encima de los demás elementos */
+    width: 200px; /* Ajusta el ancho según sea necesario */
+}
+
+
+/* Estilo para los enlaces dentro del submenú */
+.submenu li {
+    margin: 15px 0; /* Aumentar el margen entre los elementos */
+}
+
+.submenu li a {
+    color: #111;
+}
+
+/* Media Queries para Responsividad */
+@media (max-width: 768px) {
+    .nav-menu ul {
+        flex-direction: column; /* Cambiar a columna en pantallas pequeñas */
+        display: none; /* Ocultar menú por defecto */
+    }
+
+    .nav-menu.active ul {
+        display: flex; /* Mostrar menú si la clase activa está presente */
+    }
+
+    .hamburger {
+        display: flex; /* Mostrar el botón de menú */
+    }
+    .submenu {
+        display: none; /* Ocultar submenú por defecto */
+    }
+
+    .perfil-menu.active .submenu {
+        display: block; /* Mostrar submenú si el padre está activo */
+    }
+
+    .hero-section {
+        height: 60vh; /* Altura ajustable en pantallas pequeñas */
+    }
+
+    .hero-text h1 {
+        font-size: 30px; /* Tamaño de fuente menor */
+    }
+
+    .hero-text p {
+        font-size: 18px; /* Tamaño de fuente menor */
+    }
+
+    .cards-container {
+        flex-direction: column; /* Tarjetas en columna */
+    }
+
+    .card {
+        width: 90%; /* Ancho de tarjeta más ajustado */
+    }
+
+    .benefits-section {
+        grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
+    }
+}
+
+/* Para pantallas más pequeñas */
+@media (max-width: 480px) {
+    .hero-text h1 {
+        font-size: 24px; /* Más pequeño */
+    }
+
+    .hero-text p {
+        font-size: 16px; /* Más pequeño */
+    }
+
+    .card h2 {
+        font-size: 20px; /* Más pequeño */
+    }
+
+    .card h4 {
+        font-size: 16px; /* Más pequeño */
+    }
+
+    .nav-menu a {
+        font-size: 16px; /* Más pequeño */
+    }
+
+    .footer-content p {
+        font-size: 12px; /* Más pequeño */
+    }
+
+    .footer-menu a {
+        font-size: 14px; /* Más pequeño */
+    }
+}
+.benefit h3 {
+    font-size: 22px;
+    color: #f9b233;
+    margin-bottom: 10px;
+    display: flex; /* Alineación horizontal */
+    align-items: center; /* Centra verticalmente */
+}
+
+.benefit h3 i {
+    margin-right: 10px; /* Espacio entre el ícono y el texto */
+    font-size: 28px; /* Tamaño del ícono */
+    color: #f9b233; /* Color del ícono */
+}
+
+/*-------------------INICIA EL LOGIN----------------------*/
+
+/* Estilos generales para el cuerpo del login */
+.login-body {
+    font-family: 'Arial', sans-serif;
+    background: url('../Imagenes/carro-login.jpg') no-repeat center center fixed; /* Ruta a la imagen de fondo */
+    background-size: cover; /* La imagen cubre toda la pantalla */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-blend-mode: overlay; /* Mezcla de colores suave */
+}
+
+/* Estilos para el contenedor de login */
+.login-container {
+    background-color: rgba(255, 255, 255, 0.9); /* Fondo translúcido */
+    padding: 3rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    transition: transform 0.3s ease;
+    margin-left: 800px; /* Ajuste por defecto para pantallas grandes */
+}
+
+/* Responsive: Ajustar el contenedor en dispositivos más pequeños */
+@media (max-width: 1024px) {
+    .login-container {
+        margin-left: 400px; /* Ajusta el margen para pantallas medianas */
+    }
+}
+
+@media (max-width: 768px) {
+    .login-container {
+        margin-left: 0; /* Centra el contenedor para pantallas más pequeñas */
+        width: 80%; /* Aumenta el ancho para que sea más flexible */
+    }
+}
+
+@media (max-width: 480px) {
+    .login-container {
+        margin-left: 0; /* Centra el contenedor */
+        width: 90%; /* Casi todo el ancho de la pantalla en móviles */
+        padding: 2rem 1rem; /* Ajuste del padding en móviles */
+    }
+}
+
+/* Estilos para el título */
+.login-title {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    color: #f9b233;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-title i {
+    margin-right: 10px;
+    color: #f9b233;
+  
+    padding: 0.5rem;
+    border-radius: 50%;
+}
+
+/* Estilos para el formulario */
+.login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Estilos para las etiquetas */
+.login-label {
+    margin-bottom: 0.5rem;
+    color: #f9b233;
+}
+/* Contenedor del formulario de login */
+.login-form-container {
+    width: 400px; /* Ajusta el tamaño del formulario */
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco semi-transparente */
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    position: relative; /* Importante para posicionar el enlace */
+}
+
+/* Estilos para el enlace de "Olvidaste tu contraseña" */
+.forgot-password {
+    position: absolute;
+    top: 10px; /* Ajusta según la necesidad */
+    right: 10px; /* Ajusta según la necesidad */
+    font-size: 14px;
+    color: #f9b233; /* Mismo color que el botón */
+    text-decoration: none;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+    color: #d89220; /* Cambia el color al pasar el ratón */
+}
+
+
+
+
+/* Estilos para los campos de entrada del login */
+.login-input-field {
+    padding: 0.75rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid #f9b233; /* Borde con contraste para mejor visibilidad */
+    border-radius: 6px;
+    background-color: #F8F9FA; /* Fondo gris claro para mayor visibilidad */
+    font-size: 1rem;
+    color: #f9b233;
+    transition: box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+/* Estilos al enfocar el campo de entrada del login */
+.login-input-field:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 90, 148, 0.6);
+    background-color: #FFF; /* Fondo blanco al enfocar */
+}
+
+/* Estilos para el botón */
+.login-button {
+    padding: 0.8rem;
+    background-color: #f9b233;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+    background-color: #3E4E71;
+}
+
+/* Estilos para el texto del párrafo */
+.login-paragraph {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    color: #111;
+}
+
+/* Estilos para los enlaces */
+.login-link {
+    color: #f9b233;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.login-link:hover {
+    color: #f9b233;
+    text-decoration: underline;
+}
+/*-------------------FINALIZA EL LOGIN----------------------*/
+
+/*-------------------INICIA EL REGISTRO----------------------*/
+
+/* Estilos generales para el cuerpo del registro */
+.registrate-body {
+    font-family: 'Arial', sans-serif;
+    background: url('../Imagenes/carro-registro.jpg') no-repeat center center fixed; /* Ruta a la imagen de fondo */
+    background-size: cover; /* La imagen cubre toda la pantalla */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-blend-mode: overlay; /* Mezcla de colores suave */
+}
+
+/* Estilos para el contenedor de registro */
+.registrate-container {
+    background-color: rgba(255, 255, 255, 0.9); /* Fondo translúcido */
+    padding: 3rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    transition: transform 0.3s ease;
+    margin: auto; /* Centrar horizontalmente */
+}
+
+
+/* Responsive: Ajustar el contenedor en dispositivos más pequeños */
+@media (max-width: 1024px) {
+    .registrate-container {
+        margin-left: 400px; /* Ajusta el margen para pantallas medianas */
+    }
+}
+
+@media (max-width: 768px) {
+    .registrate-container {
+        margin-left: 0; /* Centra el contenedor para pantallas más pequeñas */
+        width: 80%; /* Aumenta el ancho para que sea más flexible */
+    }
+}
+
+@media (max-width: 480px) {
+    .registrate-container {
+        margin-left: 0; /* Centra el contenedor */
+        width: 90%; /* Casi todo el ancho de la pantalla en móviles */
+        padding: 2rem 1rem; /* Ajuste del padding en móviles */
+    }
+}
+
+/* Estilos para el título */
+.registrate-title {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    color: #f9b233;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.registrate-title i {
+    margin-right: 10px;
+    color: #f9b233;
+   
+    padding: 0.5rem;
+    border-radius: 50%;
+}
+
+/* Estilos para el formulario */
+.registrate-form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Estilos para las etiquetas */
+.registrate-label {
+    margin-bottom: 0.5rem;
+    color: #f9b233;
+}
+
+/* Estilos para los campos de entrada */
+.registrate-input-field {
+    padding: 0.75rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid #f9b233;
+    border-radius: 6px;
+    background-color: #F8F9FA;
+    font-size: 1rem;
+    color: #111;
+    transition: box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.registrate-input-field:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 90, 148, 0.6);
+    background-color: #FFF; /* Fondo blanco al enfocar */
+}
+
+/* Estilos para el botón */
+.registrate-button {
+    padding: 0.8rem;
+    background-color: #f9b233;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.registrate-button:hover {
+    background-color: #3E4E71;
+}
+
+/* Estilos para el texto del párrafo */
+.registrate-paragraph {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    color: #111;
+}
+
+/* Estilos para los enlaces */
+.registrate-link {
+    color: #f9b233;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.registrate-link:hover {
+    color: #3E4E71;
+    text-decoration: underline;
+}
+/*-------------------FINALIZA EL REGISTRO----------------------*/
+
+/*-------------------- Estilos para el header------------------- */
+.header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #4F5D77; /* Color del login */
+    color: white;
+    position:relative;
+    margin: 0;
+}
+
+.header-left h1 {
+    margin: 0;
+    color: white;
+    font-size: 2rem;
+}
+
+.header-right ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+}
+
+.header-right ul li {
+    display: inline;
+}
+
+.header-right ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.header-right ul li a:hover {
+    text-decoration: underline;
+    color: #D1E1F0; /* Mismo color del hover en login */
+}
+
+
+/* Ajustes para eliminar el margen entre el header y la imagen */
+.main-section {
+    padding: 0;
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+    background-color: transparent;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -100px; /* Nuevo ajuste para eliminar espacio */
+}
+
+.referential-image {
+    max-width: 100%;
+    height: auto;
+    margin: 0;
+    display: block;
+    object-fit: cover;
+    padding: 0;
+}
+
+
+
+
+.info-content {
+    font-size: 1.2rem;
+    color: #4F5D77; /* Texto en color similar al login */
+}
+
+/* Estilos para el footer */
+.footer-section {
+    text-align: center;
+    padding: 10px;
+    background-color: #4F5D77;
+    color: white;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+/* Icono */
+.icono-carro {
+    width: 30px;
+    height: auto;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+
+/* Estilos del contenedor de recuperación de contraseña */
+.recover-password-form {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+}
+
+.recover-password-form h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.recover-password-form label {
+    display: block;
+    text-align: left;
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #555;
+}
+
+.recover-password-form input[type="email"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.recover-password-form button {
+    background-color: #f9b233;
+    color: white;
+    padding: 12px;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.recover-password-form button:hover {
+    background-color: #e5a022;
+}
+
+/* Estilo para el mensaje de respuesta */
+#message {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #333;
+}
+.reset-password-input {
+    width: 100%; /* Ajusta a todo el ancho del contenedor */
+    padding: 10px; /* Añade algo de espacio interno */
+    margin-bottom: 20px;
+    font-size: 16px; /* Ajusta el tamaño de la fuente */
+    border: 1px solid #ccc; /* Añade un borde */
+    border-radius: 4px; /* Bordes redondeados */
+}
+
+/*FINALIZA ESTILOS PARA EL RECUPERAR CONTRA*/
+
+
+/* Estilos de filtros */
+.filter-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: fit-content; /* Ajusta el ancho al contenido */
+    margin: 0 auto; /* Centra el contenedor horizontalmente */
+}
+
+
+.filter-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    border: 1px solid #f9b233;
+    border-radius: 8px;
+    background-color: #f5f5dc; /* Fondo suave */
+    color: #111;
+    transition: all 0.3s ease;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.filter-item:hover {
+    background-color: #f9b233;
+    color: #fff;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.filter-item input[type="checkbox"], 
+.filter-item input[type="radio"] {
+    margin-right: 8px;
+    accent-color: #f9b233; /* Color personalizado para el checkbox/radio */
+    transform: scale(1.1);
+}
+
+.filter-item select {
+    border: 1px solid #ddd;
+    padding: 8px 12px;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #111;
+    transition: border-color 0.3s ease;
+}
+
+.filter-item select:focus {
+    border-color: #f9b233;
+    outline: none;
+}
+
+.apply-filters-btn {
+    margin-top: 15px;
+    padding: 12px 20px;
+    font-size: 16px;
+    background-color: #f9b233;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.apply-filters-btn:hover {
+    background-color: #f7a723;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Estilo base para el botón */
+.restablecerFiltros {
+    background-color: white; /* Color de fondo */
+    color: #f9b233; /* Color del texto */
+    border: 1px solid #f9b233; /* Borde del botón */
+    border-radius: 5px; /* Bordes redondeados */
+    padding: 10px 20px; /* Espaciado interno */
+    font-size: 16px; /* Tamaño de fuente */
+    cursor: pointer; /* Cambia el cursor al pasar el mouse */
+    transition: background-color 0.3s, transform 0.2s; /* Transiciones suaves */
+}
+
+/* Efecto al pasar el mouse (hover) */
+.restablecerFiltros:hover {
+    background-color: white; /* Color de fondo al pasar el mouse */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra del botón */
+}
+
+/* Efecto al hacer clic (active) */
+.restablecerFiltros:active {
+    transform: scale(0.95); /* Reduce el tamaño al hacer clic */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra más pequeña al hacer clic */
+}

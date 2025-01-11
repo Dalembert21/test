@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Pruebas Unitarias</title>
+    <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.16.0.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/qunit/qunit-2.16.0.js"></script>
+</head>
+<body>
+    <h1>Pruebas de API con QUnit</h1>
+    <div id="qunit"></div>
+    <div id="qunit-fixture"></div>
+    <script>
+QUnit.module("Pruebas de la API REST - registroEmpleado");
+const urlAPI = "http://localhost/PruebaUnitaria-Autos/backend/api.php";
+QUnit.test("registroEmpleado - Datos correctos", assert => {
+    const done = assert.async();
+    $.ajax({
+        url: '../backend/apiRest.php',
+        type: "POST",
+        data: {
+            accion: "registrarEmpleado",
+            cedula_Empleado: "1",
+            nombre_Empleado: "admin",
+            apellido_Empleado: "admin",
+            correo_Empleado: "admin2@gmail.com",
+            clave_Empleado: "123"
+        },
+        success: function(response) {
+            assert.equal(response.mensaje, "Empleado creado correctamente", "Empleado registrado correctamente.");
+            done();
+        },
+        error: function() {
+            assert.ok(false, "Error en la solicitud Ajax.");
+            done();
+        }
+    });
+});
+
+/*
+QUnit.test("registroEmpleado - Datos incompletos", assert => {
+    const done = assert.async();
+    $.ajax({
+        url: '../backend/apiRest.php',
+        type: "POST",
+        data: {
+            accion: "registrarEmpleado",
+            cedula_Empleado: "1",
+            nombre_Empleado: "admin",
+            // apellido_Empleado: "", // Falta este campo
+            correo_Empleado: "admin2@gmail.com",
+            clave_Empleado: "123"
+        },
+        success: function(response) {
+            assert.equal(response.mensaje, "Faltan datos", "Se maneja correctamente el caso de datos incompletos.");
+            done();
+        },
+        error: function() {
+            assert.ok(false, "Error en la solicitud Ajax.");
+            done();
+        }
+    });
+});
+
+
+
+QUnit.test("registroEmpleado - Datos vacíos", assert => {
+    const done = assert.async();
+    $.ajax({
+        url: '../backend/apiRest.php',
+        type: "POST",
+        data: {
+            accion: "registrarEmpleado",
+            cedula_Empleado: "",
+            nombre_Empleado: "",
+            apellido_Empleado: "",
+            correo_Empleado: "",
+            clave_Empleado: ""
+        },
+        success: function(response) {
+            assert.equal(response.mensaje, "Faltan datos", "Se maneja correctamente el caso de datos vacíos.");
+            done();
+        },
+        error: function() {
+            assert.ok(false, "Error en la solicitud Ajax.");
+            done();
+        }
+    });
+});
+
+
+QUnit.test("registroEmpleado - Datos erróneos", assert => {
+    const done = assert.async();
+    $.ajax({
+        url: '../backend/apiRest.php',
+        type: "POST",
+        data: {
+            accion: "registrarEmpleado",
+            cedula_Empleado: "1",
+            nombre_Empleado: "admin",
+            apellido_Empleado: "admin",
+            correo_Empleado: "correo_invalido", // Correo no válido
+            clave_Empleado: "123"
+        },
+        success: function(response) {
+            assert.equal(response.mensaje, "Empleado no creado: error al ejecutar la consulta", "Se maneja correctamente el caso de datos erróneos.");
+            done();
+        },
+        error: function() {
+            assert.ok(false, "Error en la solicitud Ajax.");
+            done();
+        }
+    });
+});
+*/
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Pruebas Unitarias</title>
+    <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.16.0.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/qunit/qunit-2.16.0.js"></script>
+</head>
+<body>
+    <h1>Pruebas de API con QUnit</h1>
+    <div id="qunit"></div>
+    <div id="qunit-fixture"></div>
+    <script>
+
+QUnit.module("Pruebas de la API REST - Vehículos");
+
+const urlAPI = "http://localhost/PruebaUnitaria-Autos/backend/api.php"; 
+
+QUnit.module("Pruebas de la API REST - Vehículos", function() {
+    /*
+    QUnit.test("obtenerTiposVehiculos - Datos correctos", function(assert) {
+        let done = assert.async();
+        $.ajax({
+            url: '../backend/apiRestCards.php',
+            type: "GET",
+            data: { action: "obtenerTiposVehiculos" },
+            success: function(response) {
+                console.log("Respuesta de obtenerTiposVehiculos:", response);
+                assert.ok(Array.isArray(response), "Se devuelve un array de tipos de vehículos.");
+                assert.ok(response.length > 0, "Se reciben tipos de vehículos.");
+                done();
+            },
+            error: function(xhr, status, error) {
+                assert.ok(false, "Error en la solicitud Ajax.");
+                done();
+            }
+        });
+    });
+  
+   
+    QUnit.test("obtenerTiposVehiculos - Datos incompletos", function(assert) {
+        let done = assert.async();
+        $.ajax({
+            url: '../backend/apiRestCards.php',
+            type: "GET",
+            data: { action: "" },  // Acción vacía
+            success: function(response) {
+                assert.ok(false, "No debería devolverse una respuesta válida con datos incompletos.");
+                done();
+            },
+            error: function(xhr, status, error) {
+                assert.ok(true, "Error en la solicitud debido a datos incompletos.");
+                done();
+            }
+        });
+    });  
+    
+   
+    QUnit.test("obtenerTiposVehiculos - Datos erróneos", function(assert) {
+        let done = assert.async();
+        $.ajax({
+            url: '../backend/apiRestCards.php',
+            type: "GET",
+            data: { action: "obtenerTipoVehiculo" },  
+            success: function(response) {
+                assert.ok(false, "No debería devolverse una respuesta válida con datos erróneos.");
+                done();
+            },
+            error: function(xhr, status, error) {
+                assert.ok(true, "Error en la solicitud debido a datos erróneos.");
+                done();
+            }
+        });
+    });
+    
+ 
+    QUnit.test("obtenerTiposVehiculos - Datos vacíos", function(assert) {
+        let done = assert.async();
+        $.ajax({
+            url: '../backend/apiRestCards.php',
+            type: "GET",
+            data: {},
+            success: function(response) {
+                assert.ok(false, "No debería devolverse una respuesta válida con datos vacíos.");
+                done();
+            },
+            error: function(xhr, status, error) {
+                assert.ok(true, "Error en la solicitud debido a datos vacíos.");
+                done();
+            }
+        });
+    });
+    
+    QUnit.test("obtenerAniosVehiculos - Datos correctos", function(assert) {
+        let done = assert.async();
+        $.ajax({
+            url: '../backend/apiRestCards.php',
+            type: "GET",
+            data: { action: "obtenerAniosVehiculos" },
+            success: function(response) {
+                console.log("Respuesta de obtenerAniosVehiculos:", response);
+                assert.ok(Array.isArray(response), "Se devuelve un array de años de vehículos.");
+                assert.ok(response.length > 0, "Se reciben años de vehículos.");
+                done();
+            },
+            error: function(xhr, status, error) {
+                assert.ok(false, "Error en la solicitud Ajax.");
+                done();
+            }
+        });
+    });
+
+
+  
+    QUnit.test("obtenerAniosVehiculos - Datos incompletos", function(assert) {
+        let done = assert.async();
+        $.ajax({
+            url: '../backend/apiRestCards.php',
+            type: "GET",
+            data: { action: "" },  // Acción vacía
+            success: function(response) {
+                assert.ok(false, "No debería devolverse una respuesta válida con datos incompletos.");
+                done();
+            },
+            error: function(xhr, status, error) {
+                assert.ok(true, "Error en la solicitud debido a datos incompletos.");
+                done();
+            }
+        });
+    });  
+    
+    
+    QUnit.test("obtenerAniosVehiculos - Datos erróneos", function(assert) {
+        let done = assert.async();
+        $.ajax({
+            url: '../backend/apiRestCards.php',
+            type: "GET",
+            data: { action: "obtenerTipoVehiculo" },  
+            success: function(response) {
+                assert.ok(false, "No debería devolverse una respuesta válida con datos erróneos.");
+                done();
+            },
+            error: function(xhr, status, error) {
+                assert.ok(true, "Error en la solicitud debido a datos erróneos.");
+                done();
+            }
+        });
+    });
+
+
+    QUnit.test("obtenerAniosVehiculos - Datos vacíos", function(assert) {
+        let done = assert.async();
+        $.ajax({
+            url: '../backend/apiRestCards.php',
+            type: "GET",
+            data: {},
+            success: function(response) {
+                assert.ok(false, "No debería devolverse una respuesta válida con datos vacíos.");
+                done();
+            },
+            error: function(xhr, status, error) {
+                assert.ok(true, "Error en la solicitud debido a datos vacíos.");
+                done();
+            }
+        });
+    });
+
+
+    QUnit.test("obtenerTransmisiones - Datos correctos", function(assert) {
+        let done = assert.async();
+        $.ajax({
+            url: '../backend/apiRestCards.php',
+            type: "GET",
+            data: { action: "obtenerTransmisiones" },
+            success: function(response) {
+                console.log("Respuesta de obtenerTransmisiones:", response);
+                assert.ok(Array.isArray(response), "Se devuelve un array de tipos de transmisión.");
+                assert.ok(response.length > 0, "Se reciben tipos de transmisión.");
+                done();
+            },
+            error: function(xhr, status, error) {
+                assert.ok(false, "Error en la solicitud Ajax.");
+                done();
+            }
+        });
+    });
+
+
+    QUnit.test("obtenerTransmisiones - Datos incompletos", function(assert) {
+        let done = assert.async();
+        $.ajax({
+            url: '../backend/apiRestCards.php',
+            type: "GET",
+            data: { action: "" },  // Acción vacía
+            success: function(response) {
+                assert.ok(false, "No debería devolverse una respuesta válida con datos incompletos.");
+                done();
+            },
+            error: function(xhr, status, error) {
+                assert.ok(true, "Error en la solicitud debido a datos incompletos.");
+                done();
+            }
+        });
+    });  
+    
+    
+    QUnit.test("obtenerTransmisiones - Datos erróneos", function(assert) {
+        let done = assert.async();
+        $.ajax({
+            url: '../backend/apiRestCards.php',
+            type: "GET",
+            data: { action: "obtenerTipoVehiculo" },  
+            success: function(response) {
+                assert.ok(false, "No debería devolverse una respuesta válida con datos erróneos.");
+                done();
+            },
+            error: function(xhr, status, error) {
+                assert.ok(true, "Error en la solicitud debido a datos erróneos.");
+                done();
+            }
+        });
+    });
+
+
+    QUnit.test("obtenerTransmisiones - Datos vacíos", function(assert) {
+        let done = assert.async();
+        $.ajax({
+            url: '../backend/apiRestCards.php',
+            type: "GET",
+            data: {},
+            success: function(response) {
+                assert.ok(false, "No debería devolverse una respuesta válida con datos vacíos.");
+                done();
+            },
+            error: function(xhr, status, error) {
+                assert.ok(true, "Error en la solicitud debido a datos vacíos.");
+                done();
+            }
+        });
+    
+
+*/
+/*
+    QUnit.test("obtenerCombustible - Datos correctos", function(assert) {
+        let done = assert.async();
+        $.ajax({
+            url: '../backend/apiRestCards.php',
+            type: "GET",
+            data: { action: "obtenerCombustibles" },
+            success: function(response) {
+                console.log("Respuesta de obtenerCombustibles:", response);
+                assert.ok(Array.isArray(response), "Se devuelve un array de tipos de combustible.");
+                assert.ok(response.length > 0, "Se reciben tipos de combustible.");
+                done();
+            },
+            error: function(xhr, status, error) {
+                assert.ok(false, "Error en la solicitud Ajax.");
+                done();
+            }
+        });
+    });
+
+
+
+    QUnit.test("obtenerCombustible - Datos incompletos", function(assert) {
+        let done = assert.async();
+        $.ajax({
+            url: '../backend/apiRestCards.php',
+            type: "GET",
+            data: { action: "" },  // Acción vacía
+            success: function(response) {
+                assert.ok(false, "No debería devolverse una respuesta válida con datos incompletos.");
+                done();
+            },
+            error: function(xhr, status, error) {
+                assert.ok(true, "Error en la solicitud debido a datos incompletos.");
+                done();
+            }
+        });
+    });  
+    
+    
+   
+    QUnit.test("obtenerCombustible - Datos erróneos", function(assert) {
+        let done = assert.async();
+        $.ajax({
+            url: '../backend/apiRestCards.php',
+            type: "GET",
+            data: { action: "obtenerTipoVehiculo" },  
+            success: function(response) {
+                assert.ok(false, "No debería devolverse una respuesta válida con datos erróneos.");
+                done();
+            },
+            error: function(xhr, status, error) {
+                assert.ok(true, "Error en la solicitud debido a datos erróneos.");
+                done();
+            }
+        });
+    });*/
+
+
+    QUnit.test("obtenerCombustible - Datos vacíos", function(assert) {
+        let done = assert.async();
+        $.ajax({
+            url: '../backend/apiRestCards.php',
+            type: "GET",
+            data: {},
+            success: function(response) {
+                assert.ok(false, "No debería devolverse una respuesta válida con datos vacíos.");
+                done();
+            },
+            error: function(xhr, status, error) {
+                assert.ok(true, "Error en la solicitud debido a datos vacíos.");
+                done();
+            }
+        });
+
+});
+
+});
+
+    </script>
+</body>
+</html>

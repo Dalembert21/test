@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración - UTA DRIVE</title>
+    <link rel="stylesheet" href="../estilos/estilosAdmin.css"> <!-- Aquí enlazas el archivo CSS exclusivo para el admin -->
+</head>
+<body class="body-section">
+
+    <!-- Header de la página del administrador -->
+    <header class="header-section">
+        <div class="header-left">
+            <h1><img src="../Imagenes/iconoAuto.png" alt="Icono Carro" class="icono-carro"> UTA DRIVE - ADMIN</h1>
+        </div>
+        <nav class="header-right">
+            <ul>
+                <li><a href="#">Inicio</a></li> <!-- Enlace a la página de inicio -->
+                <li><a href="#">Dashboard</a></li>
+                <li><a href="#">Usuarios</a></li>
+                <li><a href="#">Vehículos</a></li>
+                <li><a href="#">Reportes</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Sección principal con contenido del administrador -->
+    <section class="admin-main-section">
+        <div class="admin-dashboard">
+            <h2>Bienvenido al Panel de Administración</h2>
+            <p>Gestione los usuarios, vehículos y otros aspectos del sistema desde este panel.</p>
+            
+            <!-- Tarjetas con las gestiones del administrador -->
+            <div class="admin-card-container">
+                <div class="admin-card">
+                    <h3>Gestión de Usuarios</h3>
+                    <p>Añadir, editar o eliminar usuarios del sistema.</p>
+                    <button class="admin-button" onclick="window.location.href='gestionEmpleados.html'">Administrar Usuarios</button>
+
+                </div>
+
+                <div class="admin-card">
+                    <h3>Gestión de Vehículos</h3>
+                    <p>Gestionar los vehículos disponibles para alquiler.</p>
+                    <button class="admin-button">Administrar Vehículos</button>
+                </div>
+
+                <div class="admin-card">
+                    <h3>Reportes</h3>
+                    <p>Generar reportes de alquileres y usuarios.</p>
+                    <button class="admin-button">Generar Reportes</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer del administrador -->
+    <footer class="footer-section">
+        <p>&copy; 2024 UTA DRIVE. Todos los derechos reservados.</p>
+    </footer>
+
+</body>
+</html>

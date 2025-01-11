@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UTA DRIVE</title>
+    <link rel="stylesheet" href="../estilos/estilos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha384-..." crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="logo">
+            <a href="#">UTA DRIVE</a>
+        </div>
+        <div class="hamburger" id="hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Vehículos</a></li>
+                <li><a href="#">Sobre Nosotros</a></li>
+                <li class="perfil-menu">
+                    <a href="#" id="perfilLink">Perfil</a>
+                    <ul class="submenu">
+                        <li><a href="../vista/login.html" id="login"><i class="fa-solid fa-user"></i> Iniciar Sesión</a></li>
+                        <li><a href="#" id="misReservas" style="display: none;"><i class="fas fa-calendar-alt"></i> Mis Reservas</a></li>
+                        <li><a href="#" id="logout" style="display: none;"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero-section">
+        <img src="../Imagenes/tracker.jpg" alt="Hero Image">
+        <div class="hero-text">
+            <h1>UTA DRIVE</h1>
+            <p>Alquila, conduce y disfruta.</p>
+        </div>
+    </section>
+
+    <div class="title-container">
+        <h2>Beneficios de alquilar con UTA DRIVE</h2>
+    </div>
+    <section class="benefits-section">
+        <div class="benefit">
+            <h3><i class="fas fa-tags"></i> Tarifas Preferenciales</h3>
+            <p>Disfruta de tarifas competitivas y descuentos exclusivos para clientes frecuentes.</p>
+        </div>
+        <div class="benefit">
+            <h3><i class="fas fa-car"></i> Amplia Gama de Vehículos</h3>
+            <p>Encuentra el vehículo ideal para cualquier ocasión: desde sedanes hasta SUVs.</p>
+        </div>
+        <div class="benefit">
+            <h3><i class="fas fa-headset"></i> Soporte 24/7</h3>
+            <p>Atención al cliente todo el día para resolver cualquier inconveniente o consulta.</p>
+        </div>
+        <div class="benefit">
+            <h3><i class="fas fa-shield-alt"></i> Seguros Incluidos</h3>
+            <p>Cada alquiler incluye seguro para que manejes con tranquilidad.</p>
+        </div>
+    </section>
+
+    <div class="title-container">
+        <h2>Vehículos disponibles en UTA DRIVE</h2>
+    </div>
+    <div class="filter-container">
+        <div class="filter-item">
+            <label for="tipoAuto">Tipo de Auto:</label>
+            <select id="tipoAuto">
+               
+            </select>
+        </div>
+    
+        <div class="filter-item">
+            <label for="anio">Año:</label>
+            <select id="anio">
+                
+            </select>
+        </div>
+    
+        <div class="filter-item">
+            <label for="transmision">Transmisión:</label>
+            <select id="transmision">   
+            </select>
+        </div>
+    
+        <div class="filter-item">
+            <label for="combustible">Tipo de Combustible:</label>
+            <select id="combustible">
+               
+            </select>
+        </div>
+        <button id="resetFilters" class="restablecerFiltros">Restablecer filtrado</button>
+
+    </div>
+    
+    <div class="cards-container">
+        <!-- Las tarjetas de vehículos se cargarán aquí dinámicamente -->
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p>&copy; 2024 UTA DRIVE. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var nombreUsuario = localStorage.getItem('nombreUsuario');
+            var loginLink = document.getElementById('login');
+            var misReservasLink = document.getElementById('misReservas');
+            var logoutLink = document.getElementById('logout');
+    
+            if (nombreUsuario) {
+                misReservasLink.style.display = 'inline'; 
+                logoutLink.style.display = 'inline'; 
+                loginLink.style.display = 'none';  
+                
+                var perfilMenu = document.querySelector('.perfil-menu > a');
+                perfilMenu.innerText = nombreUsuario; 
+            } else {
+                loginLink.style.display = 'inline'; 
+                misReservasLink.style.display = 'none'; 
+                logoutLink.style.display = 'none'; 
+            }
+    
+            cargarOpcionesCombobox('http://localhost/app-Alquiler-Autos/backend/apiRestCards.php', 'tipoAuto', 'obtenerTiposVehiculos', 'tipo_vehiculo');
+            cargarOpcionesCombobox('http://localhost/app-Alquiler-Autos/backend/apiRestCards.php', 'anio', 'obtenerAniosVehiculos', 'año_vehiculo');
+            cargarOpcionesCombobox('http://localhost/app-Alquiler-Autos/backend/apiRestCards.php', 'transmision', 'obtenerTransmisiones', 'transmision_vehiculo');
+            cargarOpcionesCombobox('http://localhost/app-Alquiler-Autos/backend/apiRestCards.php', 'combustible', 'obtenerCombustibles', 'combustible_vehiculo');
+    
+            cargarVehiculos();
+    
+            // Agregar eventos de cambio para los selectores de filtro
+            document.getElementById('tipoAuto').addEventListener('change', filtrarVehiculos);
+            document.getElementById('anio').addEventListener('change', filtrarVehiculos);
+            document.getElementById('transmision').addEventListener('change', filtrarVehiculos);
+            document.getElementById('combustible').addEventListener('change', filtrarVehiculos);
+    
+            // Agregar evento para el botón de restablecer filtros
+            document.getElementById('resetFilters').addEventListener('click', function() {
+                // Restablecer todos los selectores a "Todos"
+                document.getElementById('tipoAuto').value = '';
+                document.getElementById('anio').value = '';
+                document.getElementById('transmision').value = '';
+                document.getElementById('combustible').value = '';
+    
+                // Llamar a la función de filtrado para mostrar todos los vehículos
+                filtrarVehiculos();
+            });
+        });
+    
+        function cargarVehiculos() {
+            $.ajax({
+                url: 'http://localhost/app-Alquiler-Autos/backend/apiRestCards.php',
+                method: 'GET',
+                data: { action: 'obtenerVehiculos' },
+                dataType: 'json',
+                success: function(vehiculos) {
+                    const cardsContainer = document.querySelector('.cards-container');
+                    cardsContainer.innerHTML = ''; 
+                    
+                    vehiculos.forEach(vehiculo => {
+                        const card = document.createElement('div');
+                        card.classList.add('card');
+                        
+                        card.setAttribute('data-tipo', vehiculo.tipo_vehiculo);
+                        card.setAttribute('data-anio', vehiculo.año_vehiculo);
+                        card.setAttribute('data-transmision', vehiculo.transmision_vehiculo);
+                        card.setAttribute('data-combustible', vehiculo.combustible_vehiculo);
+    
+                        card.innerHTML = `
+                            <h2>${vehiculo.titulo_vehiculo}</h2>
+                            <img src="${vehiculo.imagen_vehiculo}" alt="Imagen de ${vehiculo.titulo_vehiculo}">
+                            <h4>Características: ${vehiculo.caracteristicas}</h4>
+                            <p>Marca: ${vehiculo.marca_vehiculo} | Modelo: ${vehiculo.modelo_vehiculo}</p>
+                            <p>Año: ${vehiculo.año_vehiculo} | Color: ${vehiculo.color_vehiculo}</p>
+                            <p>Transmisión: ${vehiculo.transmision_vehiculo} | Combustible: ${vehiculo.combustible_vehiculo}</p>
+                            <p>Precio: $${vehiculo.precio_vehiculo}</p>
+                        `;
+                        
+                        cardsContainer.appendChild(card);
+                    });
+                },
+                error: function(error) {
+                    console.error("Error al obtener vehículos:", error);
+                }
+            });
+        }
+    
+        function cargarOpcionesCombobox(apiUrl, comboboxId, action, field) {
+            $.ajax({
+                url: `${apiUrl}?action=${action}`,
+                method: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    const combobox = document.getElementById(comboboxId);
+                    combobox.innerHTML = '<option value="">Todos</option>'; 
+                    data.forEach(item => {
+                        const option = document.createElement('option');
+                        option.value = item[field];
+                        option.textContent = item[field];
+                        combobox.appendChild(option);
+                    });
+                },
+                error: function(error) {
+                    console.error(`Error al cargar ${comboboxId}:`, error);
+                }
+            });
+        }
+    
+        function filtrarVehiculos() {
+            const tipo = document.getElementById('tipoAuto').value;
+            const anio = document.getElementById('anio').value;
+            const transmision = document.getElementById('transmision').value;
+            const combustible = document.getElementById('combustible').value;
+    
+            const cards = document.querySelectorAll('.card');
+    
+            cards.forEach(card => {
+                const cardTipo = card.getAttribute('data-tipo');
+                const cardAnio = card.getAttribute('data-anio');
+                const cardTransmision = card.getAttribute('data-transmision');
+                const cardCombustible = card.getAttribute('data-combustible');
+    
+                const mostrar = 
+                    (tipo === "" || cardTipo === tipo) &&
+                    (anio === "" || cardAnio === anio) &&
+                    (transmision === "" || cardTransmision === transmision) &&
+                    (combustible === "" || cardCombustible === combustible);
+    
+                card.style.display = mostrar ? "block" : "none";
+            });
+        }
+    
+        document.getElementById('logout').addEventListener('click', function() {
+            localStorage.removeItem('nombreUsuario'); 
+            window.location.href = 'index.html'; 
+        });
+    </script>
+    
+    
+</body>
+</html>

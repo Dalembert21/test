@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Pruebas Unitarias</title>
+    <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.16.0.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/qunit/qunit-2.16.0.js"></script>
+</head>
+<body>
+    <h1>Pruebas de API con QUnit</h1>
+    <div id="qunit"></div>
+    <div id="qunit-fixture"></div>
+    <script>
+    QUnit.module("Pruebas de la API REST - loginUsuario");
+const urlAPI = "http://localhost/PruebaUnitaria-Autos/backend/api.php";
+/*
+QUnit.test("loginUsuario - Datos correctos", assert => {
+    const done = assert.async();
+    $.ajax({
+        url: '../backend/apiRest.php',
+        type: "POST",
+        data: {
+            accion: "loginUsuario",
+            correo_Registro: "fer@gmail.com",
+            clave_Registro: "123"
+        },
+        success: function(response) {
+            assert.equal(response.mensaje, "Usuario autenticado", "Usuario autenticado correctamente.");
+            done();
+        },
+        error: function() {
+            assert.ok(false, "Error en la solicitud Ajax.");
+            done();
+        }
+    });
+});
+
+QUnit.test("loginUsuario - Datos incompletos", assert => {
+    const done = assert.async();
+    $.ajax({
+        url: '../backend/apiRest.php',
+        type: "POST",
+        data: {
+            accion: "loginUsuario",
+            correo_Registro: "fer@gmail.com"
+            // Falta clave_Registro
+        },
+        success: function(response) {
+            assert.equal(response.mensaje, "Datos incompletos o incorrectos", "Se muestra mensaje de datos incompletos.");
+            done();
+        },
+        error: function() {
+            assert.ok(false, "Error en la solicitud Ajax.");
+            done();
+        }
+    });
+});
+
+
+QUnit.test("loginUsuario - Datos erróneos", assert => {
+    const done = assert.async();
+    $.ajax({
+        url: '../backend/apiRest.php',
+        type: "POST",
+        data: {
+            accion: "loginUsuario",
+            correo_Registro: "fer@gmail.com",
+            clave_Registro: "5678"
+        },
+        success: function(response) {
+            assert.equal(response.mensaje, "Credenciales incorrectas", "El mensaje indica que las credenciales son incorrectas.");
+            done();
+        },
+        error: function() {
+            assert.ok(false, "Error en la solicitud Ajax.");
+            done();
+        }
+    });
+});
+*/
+
+QUnit.test("loginUsuario - Datos vacíos", assert => {
+    const done = assert.async();
+    $.ajax({
+        url: '../backend/apiRest.php',
+        type: "POST",
+        data: {
+            accion: "loginUsuario",
+            correo_Registro: "",
+            clave_Registro: ""
+        },
+        success: function(response) {
+            assert.equal(response.mensaje, "Datos incompletos o incorrectos", "El mensaje indica datos vacíos o incompletos.");
+            done();
+        },
+        error: function() {
+            assert.ok(false, "Error en la solicitud Ajax.");
+            done();
+        }
+    });
+});
+
+
+    </script>
+</body>
+</html>

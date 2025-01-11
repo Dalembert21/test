@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regístrate</title>
+    <link rel="stylesheet" href="../estilos/estilos.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body class="registrate-body">
+    <div class="registrate-container">
+        <h2 class="registrate-title">
+            <i class="fa fa-user-plus"></i> Registrarse
+        </h2>
+        <form id="registroForm" class="registrate-form">
+            <!-- Campo oculto para la acción del formulario -->
+            <input type="hidden" name="accion" value="registrarUsuario">
+
+            <!-- Campo de Nombre -->
+            <label class="registrate-label" for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre_Registro" class="registrate-input-field" placeholder="Ingresa tu nombre" required>
+
+            <!-- Campo de Apellido -->
+            <label class="registrate-label" for="apellido">Apellido:</label>
+            <input type="text" id="apellido" name="apellido_Registro" class="registrate-input-field" placeholder="Ingresa tu apellido" required>
+
+            <!-- Campo de Correo Electrónico -->
+            <label class="registrate-label" for="email">Correo Electrónico:</label>
+            <input type="email" id="email" name="correo_Registro" class="registrate-input-field" placeholder="Ingresa tu correo electrónico" required>
+
+            <!-- Campo de Contraseña -->
+            <label class="registrate-label" for="password">Contraseña:</label>
+            <input type="password" id="password" name="clave_Registro" class="registrate-input-field" placeholder="Ingresa tu contraseña" required>
+
+            <button type="submit" class="registrate-button">Crear Cuenta</button>
+        </form>
+
+        <p class="registrate-paragraph">¿Ya tienes una cuenta? <a href="login.html" class="registrate-link">Inicia sesión aquí</a></p>
+    </div>   
+
+    <script>
+        $(document).ready(function() {
+            $('#registroForm').on('submit', function(event) {
+                event.preventDefault(); // Evita que se envíe el formulario de manera tradicional
+
+                // Obtiene los datos del formulario
+                var formData = $(this).serialize();
+
+                $.ajax({
+                    type: "POST",
+                    url: "http://localhost/app-Alquiler-Autos/backend/apiRest.php", // Cambia a la ruta correcta
+                    data: formData,
+                    dataType: 'json',
+                    success: function(respuesta) {
+                        alert(respuesta.mensaje); 
+                        // Redirige al usuario a login.html si la creación fue exitosa
+                        if (respuesta.mensaje === 'Usuario creado exitosamente') {
+                            window.location.href = "login.html"; // Cambia la ruta si es necesario
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error:', error);
+                        alert('Hubo un error al registrar el usuario.');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
