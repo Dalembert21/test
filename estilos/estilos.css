@@ -764,7 +764,7 @@ body {
 
 .header-right ul li a:hover {
     text-decoration: underline;
-    color: #d0dde9; /* Mismo color del hover en login */
+    color: #e3ebf1; /* Mismo color del hover en login */
 }
 
 
