@@ -13,7 +13,7 @@
     <div id="qunit-fixture"></div>
     <script>
     QUnit.module("Pruebas de la API REST - loginUsuario");
-const urlAPI = "http://localhost/PruebaUnitaria-Autos/backend/api.php";
+const urlAPI = "http://localhost/PruebaUnitarias/test/backend/api.php";
 
 QUnit.test("loginUsuario - Datos correctos", assert => {
     const done = assert.async();
@@ -27,6 +27,27 @@ QUnit.test("loginUsuario - Datos correctos", assert => {
         },
         success: function(response) {
             assert.equal(response.mensaje, "Usuario autenticado", "Usuario autenticado correctamente.");
+            done();
+        },
+        error: function() {
+            assert.ok(false, "Error en la solicitud Ajax.");
+            done();
+        }
+    });
+});
+
+QUnit.test("loginUsuario - Datos erróneos", assert => {
+    const done = assert.async();
+    $.ajax({
+        url: '../backend/apiRest.php',
+        type: "POST",
+        data: {
+            accion: "loginUsuario",
+            correo_Registro: "fer@gmail.com",
+            clave_Registro: "5678"
+        },
+        success: function(response) {
+            assert.equal(response.mensaje, "Credenciales incorrectas", "El mensaje indica que las credenciales son incorrectas.");
             done();
         },
         error: function() {
